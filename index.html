@@ -4,19 +4,55 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" type="" href="" />
+    <link href="https://use.fontawesome.com/releases/v5.14.0/css/all.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css" />
     <meta charset="UTF-8">
     <title>Orinoco</title>
 </head>
+
 <body>
-    <form id="add-to-cart">
-        <div id="teddies"></div>
+    <header>
+        <nav class="navbar navbar-expand-md navbar-dark ">
+            <h1 class="navbar-brand" href="#">Orinoco</h1>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#monmenu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="monmenu">
+                <ul class="navbar-nav ">
 
-        <button type="submit">
-            Ajouter les oursons au panier.
-        </button>
-    </form>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Accueil</a>
+                    </li>
+                    <li class="nav-item cartcount"><a class="nav-link " href="panier.html"><i
+                                class="fas fa-shopping-basket"></i><span>0</span></a></li>
+                </ul>
+            </div>
+        </nav>
 
-    <script src="js/listTeddies.js"></script>
+    </header>
+    <section id="teddysection">
+
+        <div id="teddies"> </div>
+
+
+
+    </section>
+    <footer>
+        <div class="wrapper">
+            <div class="titleFooter">Orinoco</div>
+            <div class="copyright">Copyright © Tous droits réservés.</div>
+        </div>
+
+    </footer>
+
+    <!-- Lien page JS -->
     <script src="js/index.js"></script>
+    <script src="js/cart.js"></script>
+
+    <!--        lien bootstrap et Jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </body>
+
 </html>
