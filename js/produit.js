@@ -46,7 +46,7 @@ async function selectionProduit() {
                 descriptionProduitPrix.textContent = data.price / 100 + " " + "euros";
                 descriptionProduitDescription.textContent = data.description;
 
-                let selectLentille = document.getElementById("couleur");
+                let selectCouleur = document.getElementById("couleur");
 
                 data.colors.forEach(couleur => {
                     let option = document.createElement("option");
