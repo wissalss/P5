@@ -4,6 +4,7 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" type="" href="" />
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville&display=swap" rel="stylesheet">
     <link href="https://use.fontawesome.com/releases/v5.14.0/css/all.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css" />
     <meta charset="UTF-8">
@@ -23,8 +24,8 @@
                     <li class="nav-item">
                         <a class="nav-link" href="index.html">Accueil</a>
                     </li>
-                    <li class="nav-item cartcount"><a class="nav-link " href="panier.html"><i
-                                class="fas fa-shopping-basket"></i><span>0</span></a></li>
+                    <li class="nav-item cartcount"><a class="nav-link" href=" panier.html">Panier <i
+                                class="fas fa-shopping-basket"></i> <span id="Numberarticle"></span></a></li>
                 </ul>
             </div>
         </nav>
@@ -33,50 +34,29 @@
 
     <div class="card">
         <div class="row">
-            <div class="col">
-                <div id="Selectionproduit">
-                    <label for="couleur">Choisissez la couleur de votre Teddy:</label>
-                    <select name="couleur" id="couleur"></select>
-                    <div id="Descriptionproduit"></div>
-                </div>
+            <div id="Selectionproduit">
+                <div id="Descriptionproduit"></div>
+                <label for="couleur">Choisissez la couleur de votre Teddy:</label>
+                <select name="couleur" id="couleur"></select>
             </div>
         </div>
         <div class="row">
             <div>
-                <div id="Quantité">
-                    <label for="Nombre" id="Quantitéproduit">Quantité</label>
-                    <select name="Nombre" id="Nombre">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                    </select>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div>
-                <button type="button" class="btnajout">Ajouter au panier</button>
+                <button type="button" id="Boutonpanier">Ajouter au panier</button>
             </div>
         </div>
     </div>
 
-    <!-- <section>
-        <div class="teddiesPdt"> </div>
-
-
-    </section> -->
     <footer>
         <div class="wrapper">
             <div class="titleFooter">Orinoco</div>
             <div class="copyright">Copyright © Tous droits réservés.</div>
         </div>
-
     </footer>
 
     <!-- Lien page JS -->
     <script src="js/produit.js"></script>
+    <script src="js/panier.js"></script>
 
     <!--        lien bootstrap et Jquery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>

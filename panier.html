@@ -3,11 +3,12 @@
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://use.fontawesome.com/releases/v5.14.0/css/all.css" rel="stylesheet">
     <link rel="shortcut icon" type="" href="" />
+    <link href="https://use.fontawesome.com/releases/v5.14.0/css/all.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css" />
     <meta charset="UTF-8">
-    <title>Panier - Orinoco</title>
+    <title>Orinoco</title>
 </head>
 
 <body>
@@ -23,58 +24,72 @@
                     <li class="nav-item">
                         <a class="nav-link" href="index.html">Accueil</a>
                     </li>
-                    <li class="nav-item cartcount"><a class="nav-link " href="panier.html"><i
-                                class="fas fa-shopping-basket"></i><span>0</span></a></li>
+                    <li class="nav-item cartcount"><a class="nav-link" href=" panier.html">Panier <i
+                                class="fas fa-shopping-basket"></i> <span id="Numberarticle"></span></a></li>
                 </ul>
             </div>
         </nav>
     </header>
-    <div class="productsContainer">
-        <div class="productHeader">
-            <h2 class="productTitle">Produit </h2>
-            <h2 class="productPrice"> Prix </h2>
-            <h2 class="productQuantity">Quantité </h2>
-            <h2 class="productTotal"> Total </h2>
-        </div>
-        <div class="products"></div>
-    </div>
-    <!--FORMULAIRE - qui apparaît via JS au clic du bouton "Terminer votre commande"-->
-    <section class="container form" id="form-section">
-        <div class="row">
-            <div class="col-12 panierForm">
-                <h2 class="form__title">Pour finaliser votre commande, merci de remplir ce formulaire.</h2>
-                <form id="formtosubmit" method="post" action="http://localhost:3000/api/furniture/order"
-                    enctype="multipart/form-data">
-                    <div class="form-group">
-                        <label for="firstName">Prénom :</label>
-                        <input type="text" name="firstName" class="form-control" placeholder="Par ex. Jean"
-                            id="firstName" pattern="[a-zA-ZàâæçéèêëîïôœùûüÿÀÂÆÇnÉÈÊËÎÏÔŒÙÛÜŸ-]+" required>
+    <section class="Mainpanier">
+
+        <div class="container" id="panier">
+            <div class="row">
+                <div class="col">
+                    <h1 class="text-center">Votre panier :</h1>
+                </div>
+            </div>
+
+            <div class="row text-center" id="mainform">
+                <div class="col" id="leftform">
+                    <div id="Sectionpanier">
+                        <p id="panierVide">Votre panier est vide.</p>
                     </div>
-                    <div class="form-group">
-                        <label for="lastName">Nom :</label>
-                        <input type="text" name="lastName" class="form-control" placeholder="Par ex. Martin"
-                            id="lastName" pattern="[A-Za-zàáâãäåçèéêëìíîïðòóôõöùúûüýÿñÀÁÂÃÄÅÇÈÉÊËÌÍÎÏÐÒÓÔÕÖÙÚÛÜÝŸÑ -]+"
-                            required>
+                    <div id="paniertry"></div>
+                </div>
+                <div class="col" id="rightform">
+                    <div id="Sectionformulaire">
+                        <p class="formp">Veuillez remplir ce formulaire afin d'effectuer le paiement de votre commande.
+                        </p>
+                        <form method="post" id="formulaire">
+                            <div class="form-group">
+                                <label for="firstName">Prénom :</label>
+                                <input type="text" name="firstName" class="form-control" placeholder="Par ex. Jean"
+                                    id="firstName" pattern="[a-zA-ZàâæçéèêëîïôœùûüÿÀÂÆÇnÉÈÊËÎÏÔŒÙÛÜŸ-]+" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="lastName">Nom :</label>
+                                <input type="text" name="lastName" class="form-control" placeholder="Par ex. Martin"
+                                    id="lastName"
+                                    pattern="[A-Za-zàáâãäåçèéêëìíîïðòóôõöùúûüýÿñÀÁÂÃÄÅÇÈÉÊËÌÍÎÏÐÒÓÔÕÖÙÚÛÜÝŸÑ -]+"
+                                    required>
+                            </div>
+                            <div class="form-group">
+                                <label for="address">Adresse :</label>
+                                <input type="text" class="form-control" placeholder="Par ex. 7 rue Arpents" id="address"
+                                    pattern="[#.0-9a-zA-Z\s,-]+" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="city">Ville :</label>
+                                <input type="text" class="form-control" placeholder="Par ex. Paris" id="city"
+                                    pattern="[A-Za-zàáâãäåçèéêëìíîïðòóôõöùúûüýÿñÀÁÂÃÄÅÇÈÉÊËÌÍÎÏÐÒÓÔÕÖÙÚÛÜÝŸÑ -]+"
+                                    required>
+                                <!--[a-zA-Z0-9 ]*-->
+                            </div>
+                            <div class=" form-group">
+                                <label for="Codepostal">Code postal :</label>
+                                <input type="number" class="form-control" name="Codepostal" id="Codepostal"
+                                    placeholder="Par ex. 75000" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email :</label>
+                                <input type="email" name="email" class="form-control"
+                                    placeholder="Par ex. jean.martin@gmail.com" id="email" required>
+                            </div>
+                            <button type="submit" class="btn" id="formbutton">Valider
+                                votre commande</button>
+                        </form>
                     </div>
-                    <div class="form-group">
-                        <label for="address">Adresse :</label>
-                        <input type="text" class="form-control" placeholder="Par ex. 7 rue Arpents" id="address"
-                            pattern="[#.0-9a-zA-Z\s,-]+" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="city">Ville :</label>
-                        <input type="text" class="form-control" placeholder="Par ex. Paris" id="city"
-                            pattern="[A-Za-zàáâãäåçèéêëìíîïðòóôõöùúûüýÿñÀÁÂÃÄÅÇÈÉÊËÌÍÎÏÐÒÓÔÕÖÙÚÛÜÝŸÑ -]+" required>
-                        <!--[a-zA-Z0-9 ]*-->
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email :</label>
-                        <input type="email" name="email" class="form-control"
-                            placeholder="Par ex. jean.martin@gmail.com" id="email" required>
-                    </div>
-                    <button type="submit" class="btn btn__order form__btn" id="confirm-link" data-toggle="modal">Valider
-                        votre commande</button>
-                </form>
+                </div>
             </div>
         </div>
     </section>
@@ -87,9 +102,8 @@
 
     </footer>
 
-    <!-- Lien page JS -->
+    <!--        lien JS -->
     <script src="js/panier.js"></script>
-    <script src="js/cart.js"></script>
 
     <!--        lien bootstrap et Jquery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>

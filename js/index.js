@@ -13,13 +13,10 @@ async function main() {
            <h2 class="teddyTitle"> ${teddy.name} </h2>
            <div class="teddyDescription"> ${teddy.description} </div>
            <div class="teddyPrice"> ${teddy.price / 100 + ",00 " + "€"} </div>
-           <a class="teddyBtnDetails" href="produit.html?id=${teddy._id} > <i class="fas fa-info-circle"></i> En savoir plus</a>
-           <a class="carts"> ajouter au panier </a>
+           <a class="teddyBtnDetails" href="produit.html?id=${teddy._id}" > <i class="fas fa-info-circle"></i> En savoir plus</a>
           
         </div>`;
     }
-
-
     document.getElementById('teddies').innerHTML = teddiesHtml;
     console.log(teddiesHtml);
 }
