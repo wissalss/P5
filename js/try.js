@@ -1,3 +1,55 @@
+/*Création de la variable contenant l'id*/
+const params = new URLSearchParams(window.location.search);
+let teddyId = params.get("id");
+
+/*Appel du produit séléctionné*/
+let myVariables; //On stock les données du produit dans cette variable.
+
+async function selectionProduit() {
+    await fetch("http://localhost:3000/api/teddies" + "/" + teddyId)
+        .then(function (response) {
+            response.json().then(function (data) {
+
+                let color = "";
+                data.colors.forEach(couleur => {
+                    color += `<option value="${couleur}">${couleur}</option>`;
+                });
+
+                myVariables = data;
+                let produit = document.getElementById("Descriptionproduit");
+                produit.innerHTML = `<div class="descriptionContainer">
+                <div class="B1description"> <img src="${data.imageUrl}" class="Imagedescription" alt="${data.name}"> </div>
+                <div class="B2description">
+                    <h2 class="Nomdescription"> ${data.name}</h2>
+                    <p class="Descriptionproduit">${data.description} </p>
+                    <div class="divColors"><label for="couleur">Choisissez la couleur de votre Teddy:</label>
+                    <select name="couleur" id="selectedColor">${color}</select></div>
+                    <p class="Prixdescription">${data.price / 100 + ",00 " + "€"} </p>
+                </div>
+                </div>`;
+                let colorElm = document.getElementById('selectedColor');
+            })
+        })
+}
+selectionProduit();
+
+/*Ajouter un article au panier*/
+function ajouterAuPanier() {
+    const bouton = document.getElementById("Boutonpanier");
+    bouton.addEventListener("click", async function () {
+        panier.push(myVariables);
+        localStorage.setItem("monPanier", JSON.stringify(panier));
+        location.reload();
+    });
+};
+ajouterAuPanier();
+
+
+<div class="divQuantity"><label  for="QuantiteProduit">Quantité</label>
+                   <input id="inputQuantite" type="number" min="1" value="1"/></div>
+
+////////// panier 
+
 const urlOrder = "http://localhost:3000/api/teddies/order";
 
 /*fonction création éléments, attribution*/
@@ -5,15 +57,6 @@ function create(type, Qualified, nomType) {
     let nomVariable = document.createElement(type);
     nomVariable.setAttribute(Qualified, nomType);
     return nomVariable;
-}
-
-/*Création du panier utilisateur si besoin*/
-if (localStorage.getItem("monPanier")) {
-    console.log("Panier OK");
-} else {
-    console.log("Création du panier");
-    let init = [];
-    localStorage.setItem("monPanier", (JSON.stringify(init)));
 }
 
 let panier = JSON.parse(localStorage.getItem("monPanier")); // pour stocker le panier dans cette variable
@@ -27,7 +70,6 @@ nombreArticle();
 
 /*Fonction de suppression d'article du panier*/
 function suppressionArticle(i) {
-    console.log("suppression article i :", i);
     panier.splice(i, 1);
     localStorage.clear();
     localStorage.setItem("monPanier", JSON.stringify(panier));
@@ -41,7 +83,19 @@ function affichagePanier() {
     if (panier.length > 0) {
         document.getElementById("panierVide").remove();
 
-
+        let produitPanier = document.getElementById("Sectionpanier");
+        produitPanier.innerHTML = `
+        <div class="tableauPanier"> 
+            <div class="tableauHeaderLigne"> 
+                <div> Article </div>
+                <div> Produit </div>
+                <div> Couleur </div>
+                <div> Quantité </div>
+                <div> Prix </div>
+                <div> Action </div>
+            </div>
+        </div>
+        `;
 
         /*Nous allons présenter le panier à l'utilisateut sous forme de tableau que nous plaçons dans la section "Sectionpanier"*/
         let tableauSection = document.getElementById("Sectionpanier");
@@ -113,12 +167,12 @@ function affichagePanier() {
             articleLigne.appendChild(articlePrix);
             articleLigne.appendChild(articleAction);
 
-
             /*Attribution des données aux élements créees*/
             articleNom.textContent = article.name;
             articleColor.textContent = article.colors;
             articlePrix.textContent = article.price / 100 + " ,00" + "€";
         });
+
 
         /*Création de la ligne du bas du tableau affichant le prix total de la commande*/
         tableauPanier.appendChild(tableauFooterLigne);
@@ -132,6 +186,8 @@ function affichagePanier() {
     }
 }
 affichagePanier();
+
+
 
 /*FORMULAIRE*/
 
@@ -189,3 +245,13 @@ document.getElementById("formulaire").addEventListener("submit", function (envoi
         localStorage.clear()
     }
 })
+
+<div class="divColors"><label for="couleur">Choisissez la couleur de votre Teddy:</label>
+                    <select name="couleur" id="selectedColor">${color}</select></div>
+                    <div class="divQuantity"><label  for="QuantiteProduit">Quantité</label>
+                   <input id="inputQuantite" type="number" min="1" value="1"/></div>
+
+let color = "";
+data.colors.forEach(couleur => {
+    color += `<option value="${couleur}">${couleur}</option>`;
+});

@@ -18,7 +18,6 @@ async function main() {
         </div>`;
     }
     document.getElementById('teddies').innerHTML = teddiesHtml;
-    console.log(teddiesHtml);
 }
 
 main();
