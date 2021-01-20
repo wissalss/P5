@@ -2,9 +2,9 @@
 let confirmation = new URLSearchParams(window.location.search);
 
 let nameConfirmation = document.getElementById("Namecommande");
-let prixConfirmation = document.getElementById("Prixcommande");
+let priceConfirmation = document.getElementById("Prixcommande");
 let idConfirmation = document.getElementById("Idcommande");
 
 nameConfirmation.textContent = confirmation.get('name');
-prixConfirmation.textContent = confirmation.get('prix');
+priceConfirmation.textContent = confirmation.get('prix');
 idConfirmation.textContent = confirmation.get('id');

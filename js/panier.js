@@ -2,18 +2,9 @@ const urlOrder = "http://localhost:3000/api/teddies/order";
 
 /*fonction création éléments, attribution*/
 function create(type, Qualified, nomType) {
-    let nomVariable = document.createElement(type);
-    nomVariable.setAttribute(Qualified, nomType);
-    return nomVariable;
-}
-
-/*Création du panier utilisateur si besoin*/
-if (localStorage.getItem("monPanier")) {
-    console.log("Panier OK");
-} else {
-    console.log("Création du panier");
-    let init = [];
-    localStorage.setItem("monPanier", (JSON.stringify(init)));
+    let variableName = document.createElement(type);
+    variableName.setAttribute(Qualified, nomType);
+    return variableName;
 }
 
 let panier = JSON.parse(localStorage.getItem("monPanier")); // pour stocker le panier dans cette variable
@@ -27,7 +18,7 @@ nombreArticle();
 
 /*Fonction de suppression d'article du panier*/
 function suppressionArticle(i) {
-    console.log("suppression article i :", i);
+    
     panier.splice(i, 1);
     localStorage.clear();
     localStorage.setItem("monPanier", JSON.stringify(panier));
@@ -118,7 +109,7 @@ function affichagePanier() {
             articleNom.textContent = article.name;
             articleColor.textContent = article.colors;
             quantity.textContent = article.quantity;
-            articlePrix.textContent = article.quantity * article.price + " ,00" + "€" ;
+            articlePrix.textContent = article.quantity * article.price + " ,00" + "€";
         });
 
         /*Création de la ligne du bas du tableau affichant le prix total de la commande*/

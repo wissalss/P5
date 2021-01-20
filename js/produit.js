@@ -28,12 +28,12 @@ fetch("http://localhost:3000/api/teddies" + "/" + teddyId)
                 </div>`;
 
         /*Ajouter un article au panier*/
-        function ajouterAuPanier() {
+        function addToBasket() {
             const bouton = document.getElementById("Boutonpanier");
             bouton.addEventListener("click", async function () {
                 colorSelected = document.getElementById('selectedColor').value;
                 quantitySelected = document.getElementById('inputQuantity').value;
-                let teddySubTotal = quantitySelected * product.price / 100;
+                let productTotalPrice = quantitySelected * product.price / 100;
                 objectSelected = {
                     productId: product._id,
                     image: product.imageUrl,
@@ -41,14 +41,14 @@ fetch("http://localhost:3000/api/teddies" + "/" + teddyId)
                     colors: colorSelected,
                     quantity: quantitySelected,
                     price: product.price / 100,
-                    totalPrice: teddySubTotal,
+                    totalPrice: productTotalPrice,
                 };
                 panier.push(objectSelected);
                 localStorage.setItem("monPanier", JSON.stringify(panier));
                 location.reload();
             });
         };
-        ajouterAuPanier();
+        addToBasket();
     });
 
 
