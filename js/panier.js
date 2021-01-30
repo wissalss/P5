@@ -7,6 +7,14 @@ function create(type, Qualified, nomType) {
     return variableName;
 }
 
+/*Création du panier utilisateur si besoin*/
+if (localStorage.getItem("monPanier")) {
+    console.log("Panier OK");
+} else {
+    console.log("Création du panier");
+    let init = [];
+    localStorage.setItem("monPanier", (JSON.stringify(init)));
+}
 let panier = JSON.parse(localStorage.getItem("monPanier")); // pour stocker le panier dans cette variable
 
 /*Fonction affichant le nombre d'article dans le panier dans le nav*/
@@ -18,7 +26,7 @@ nombreArticle();
 
 /*Fonction de suppression d'article du panier*/
 function suppressionArticle(i) {
-    
+
     panier.splice(i, 1);
     localStorage.clear();
     localStorage.setItem("monPanier", JSON.stringify(panier));
@@ -86,7 +94,7 @@ function affichagePanier() {
 
             let articleAction = create("i", "id", index);
             /*Attributs suplémentaires*/
-            articleImage.setAttribute("src", article.imageUrl);
+            articleImage.setAttribute("src", article.image);
             articleAction.setAttribute("alt", "Retirer l'article du panier.");
             articleAction.setAttribute("class", "fas fa-trash-alt"); //Logo poubelle pour supprimer l'article du panier.
 
@@ -163,9 +171,8 @@ if (formulaire) {
 
             //Création du tableau des articles
             panier.forEach(articlePanier =>
-                commandeUser.products.push(articlePanier._id)
+                commandeUser.products.push(articlePanier.productId)
             )
-
             //Envoi des données récupérées
             const optionsFetch = {
                 headers: {
